@@ -13,7 +13,24 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require 'capybara/rspec'
+require 'selenium/webdriver'
+
+
+
 RSpec.configure do |config|
+
+  # Add the code to register Selenium Chrome driver
+  Capybara.register_driver :selenium_chrome do |app|
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--headless') # Run Chrome in headless mode (no GUI)
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
+
+  # Set the JavaScript driver to Selenium Chrome
+  Capybara.javascript_driver = :selenium_chrome
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -26,6 +43,8 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+
+    
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
