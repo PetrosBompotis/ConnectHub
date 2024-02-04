@@ -4,3 +4,6 @@ import "controllers"
 
 //= require jquery
 //= require bootstrap-sprockets
+
+import './posts/style'
+import './posts/modal'
