@@ -78,4 +78,5 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'faker'
+  gem 'launchy', group: :test
 end
