@@ -14,4 +14,8 @@ module PostsHelper
       'posts/branch/categories/all_not_selected'
     end
   end
+
+  def no_posts_partial_path
+    @posts.empty? ? 'posts/branch/no_posts' : 'shared/empty_partial'
+  end
 end
