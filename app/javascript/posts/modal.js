@@ -13,4 +13,10 @@ $(document).on('turbo:load', function() {
   });
 });
 
+window.addEventListener('turbo:before-cache', function() {
+  // Close the modal before leaving the page
+  var modal = document.querySelector('.myModal');
+  if (modal) {
+    $(modal).modal('hide');
+  }
 });
