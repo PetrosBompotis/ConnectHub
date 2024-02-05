@@ -6,4 +6,12 @@ module PostsHelper
       'posts/branch/create_new_post/not_signed_in'
     end
   end
+
+  def all_categories_button_partial_path
+    if params[:category].blank?
+      'posts/branch/categories/all_selected'
+    else
+      'posts/branch/categories/all_not_selected'
+    end
+  end
 end
