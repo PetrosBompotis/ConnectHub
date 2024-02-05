@@ -1,4 +1,4 @@
-$(document).on('DOMContentLoaded', function() {
+$(document).on('turbo:load', function() {
   // when a post is clicked, show its full content in a modal window
   $("body").on( "click", ".single-post-card, .single-post-list", function() {
     var posted_by = $(this).find('.post-content .posted-by').html();
@@ -11,6 +11,12 @@ $(document).on('DOMContentLoaded', function() {
     $('.loaded-data .interested a').attr('href', interested);
     $('.myModal').modal('show');
   });
+});
 
-  console.log("Loaded modal js");
+window.addEventListener('turbo:before-cache', function() {
+  // Close the modal before leaving the page
+  var modal = document.querySelector('.myModal');
+  if (modal) {
+    $(modal).modal('hide');
+  }
 });
