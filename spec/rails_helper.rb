@@ -49,19 +49,19 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
- 
+
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end
- 
+
   config.before(:each, :js => true) do
     DatabaseCleaner.strategy = :truncation
   end
- 
+
   config.before(:each) do
     DatabaseCleaner.start
   end
- 
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
@@ -88,8 +88,8 @@ RSpec.configure do |config|
 
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include FactoryBot::Syntax::Methods
-
-  Capybara.javascript_driver = :poltergeist
+  config.include Capybara::DSL
+  Capybara.javascript_driver = :selenium_chrome
   Capybara.server = :puma
-  
+
 end
