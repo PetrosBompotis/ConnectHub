@@ -28,23 +28,11 @@ class PostsController < ApplicationController
   end
 
   def get_posts
-    branch = params[:action]
-    search = params[:search]
-    category = params[:category]
-
-    per_page = 50 # or any number you desire
-
-    if category.blank? && search.blank?
-      posts = Post.by_branch(branch).paginate(page: params[:page], per_page: per_page)
-    elsif category.blank? && search.present?
-      posts = Post.by_branch(branch).search(search).paginate(page: params[:page], per_page: per_page)
-    elsif category.present? && search.blank?
-      posts = Post.by_category(branch, category).paginate(page: params[:page], per_page: per_page)
-    elsif category.present? && search.present?
-      posts = Post.by_category(branch, category).search(search).paginate(page: params[:page], per_page: per_page)
-    else
-      posts = []
-    end
+    PostsForBranchService.new({
+                                search: params[:search],
+                                category: params[:category],
+                                branch: params[:action]
+                              }).call
   end
 
 end
