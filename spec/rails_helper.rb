@@ -91,5 +91,6 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   Capybara.javascript_driver = :selenium_chrome
   Capybara.server = :puma
+  Capybara.default_max_wait_time = 5
 
 end

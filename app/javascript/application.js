@@ -6,4 +6,4 @@ import "controllers"
 //= require bootstrap-sprockets
 
 import './posts/style'
-import './posts/modal'import "channels"
+import './posts/modal'
