@@ -11,5 +11,10 @@ consumer.subscriptions.create("Private::ConversationChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-  }
+  },
+  send_message: function(message) {
+    return this.perform('send_message', {
+        message: message
+    });
+}
 });
