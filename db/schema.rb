@@ -22,6 +22,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_153129) do
   end
 
   create_table "contacts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "contact_id"
+    t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
