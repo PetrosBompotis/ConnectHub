@@ -1,4 +1,6 @@
 class Contact < ApplicationRecord
+  after_create_commit { ContactRequestBroadcastJob.perform_later(self) }
+  
   belongs_to :user
   belongs_to :contact, class_name: "User"
 
